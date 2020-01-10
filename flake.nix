@@ -4,8 +4,9 @@
   inputs.nixpkgs.url = "nixpkgs/release-20.03";
   inputs.unstable.url = "nixpkgs/master";
   inputs.home.url = "github:rycee/home-manager/bqv-flakes";
+  inputs.nur.url = "github:nrdxp/NUR/flake";
 
-  outputs = inputs@{ self, home, nixpkgs, unstable }:
+  outputs = inputs@{ self, home, nixpkgs, nur, unstable }:
     let
       inherit (builtins) listToAttrs baseNameOf attrNames attrValues readDir;
       inherit (nixpkgs.lib) removeSuffix;

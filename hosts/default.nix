@@ -15,6 +15,8 @@ let
       specialArgs = {
         inherit unstablePkgs;
         usr = { inherit utils; };
+        nurModules = inputs.nur.nixosModules;
+        nurOverlays = inputs.nur.overlays;
       };
 
       modules = let
@@ -31,6 +33,7 @@ let
           ];
 
           nixpkgs = { inherit pkgs; };
+          nixpkgs.overlays = [ inputs.nur.overlay ];
         };
 
         local = import "${toString ./.}/${hostName}.nix";
