@@ -4,8 +4,14 @@
   inputs.nixpkgs.url = "nixpkgs/release-20.03";
   inputs.unstable.url = "nixpkgs/master";
   inputs.home.url = "github:rycee/home-manager/bqv-flakes";
+  inputs.qt514 = {
+    type = "github";
+    owner = "petabyteboy";
+    repo = "nixpkgs";
+    ref = "feature/qt-5-14-2";
+  };
 
-  outputs = inputs@{ self, home, nixpkgs, unstable }:
+  outputs = inputs@{ self, home, nixpkgs, unstable, qt514 }:
     let
       inherit (builtins) listToAttrs baseNameOf attrNames attrValues readDir;
       inherit (nixpkgs.lib) removeSuffix;
@@ -34,10 +40,12 @@
 
       unstablePkgs = pkgImport unstable;
 
+      qt514Pkgs = pkgImport qt514;
+
     in {
       nixosConfigurations = let
-        configs =
-          import ./hosts (inputs // { inherit system pkgs unstablePkgs; });
+        configs = import ./hosts
+          (inputs // { inherit system pkgs unstablePkgs qt514Pkgs; });
       in configs;
 
       devShell."${system}" = import ./shell.nix { inherit pkgs; };

@@ -48,10 +48,29 @@
         "type": "indirect"
       }
     },
+    "qt514": {
+      "info": {
+        "lastModified": 1591873720,
+        "narHash": "sha256-NZq8HAwoUTVem5MtoGeCLzMhaGT7rnWs3T4zh7ZpEkI="
+      },
+      "locked": {
+        "owner": "petabyteboy",
+        "repo": "nixpkgs",
+        "rev": "7dc83d87270e2816bfad33d2254ca223c08e1e83",
+        "type": "github"
+      },
+      "original": {
+        "owner": "petabyteboy",
+        "ref": "feature/qt-5-14-2",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
         "home": "home",
         "nixpkgs": "nixpkgs_2",
+        "qt514": "qt514",
         "unstable": "unstable"
       }
     },

@@ -1,4 +1,4 @@
-inputs@{ home, nixpkgs, unstablePkgs, self, pkgs, system, ... }:
+inputs@{ home, nixpkgs, unstablePkgs, qt514Pkgs, self, pkgs, system, ... }:
 let
   inherit (nixpkgs) lib;
 
@@ -41,6 +41,7 @@ let
               with unstablePkgs; {
                 inherit starship element-desktop discord signal-desktop mpv;
               })
+            (final: prev: with qt515Pkgs; { inherit qute qutebrowser; })
           ];
         };
 
