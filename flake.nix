@@ -53,7 +53,9 @@
         overlayPaths = map fullPath (attrNames (readDir overlayDir));
       in pathsToImportedAttrs overlayPaths;
 
-      packages."${system}" = self.overlay pkgs pkgs;
+      packages."${system}" = (self.overlay pkgs pkgs) // {
+        qutebrowser = qt515Pkgs.qutebrowser;
+      };
 
       nixosModules = let
         # binary cache
