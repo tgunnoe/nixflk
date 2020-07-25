@@ -1,4 +1,4 @@
-inputs@{ home, nixpkgs, unstablePkgs, qt514Pkgs, self, pkgs, system, ... }:
+inputs@{ home, nixpkgs, unstablePkgs, qt515Pkgs, self, pkgs, system, ... }:
 let
   inherit (nixpkgs) lib;
 

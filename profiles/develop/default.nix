@@ -17,6 +17,7 @@
     git-crypt
     gnupg
     less
+    lsof
     ncdu
     pass
     tig

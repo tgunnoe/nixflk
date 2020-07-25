@@ -48,20 +48,18 @@
         "type": "indirect"
       }
     },
-    "qt514": {
-      "info": {
-        "lastModified": 1591873720,
-        "narHash": "sha256-NZq8HAwoUTVem5MtoGeCLzMhaGT7rnWs3T4zh7ZpEkI="
-      },
+    "qt515": {
       "locked": {
-        "owner": "petabyteboy",
+        "lastModified": 1595641736,
+        "narHash": "sha256-aTOye/26JjJXKAsAfjZRDgoCgMrIgsfoLPYQnMYO5xY=",
+        "owner": "nrdxp",
         "repo": "nixpkgs",
-        "rev": "7dc83d87270e2816bfad33d2254ca223c08e1e83",
+        "rev": "42f535750cb570a603b368e24e7de55f8438a4d4",
         "type": "github"
       },
       "original": {
-        "owner": "petabyteboy",
-        "ref": "feature/qt-5-14-2",
+        "owner": "nrdxp",
+        "ref": "qt515",
         "repo": "nixpkgs",
         "type": "github"
       }
@@ -70,7 +68,7 @@
       "inputs": {
         "home": "home",
         "nixpkgs": "nixpkgs_2",
-        "qt514": "qt514",
+        "qt515": "qt515",
         "unstable": "unstable"
       }
     },
