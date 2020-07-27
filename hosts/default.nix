@@ -39,7 +39,8 @@ let
           nixpkgs.overlays = [
             (final: prev:
               with unstablePkgs; {
-                inherit starship element-desktop discord signal-desktop mpv;
+                inherit starship element-desktop discord signal-desktop mpv
+                  protonvpn-cli-ng;
               })
             (final: prev: with qt515Pkgs; { inherit qute qutebrowser; })
           ];
