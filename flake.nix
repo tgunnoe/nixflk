@@ -1,6 +1,7 @@
 {
   description = "A highly structured configuration database.";
 
+
   inputs =
     {
       master.url = "nixpkgs/master";

@@ -2,7 +2,6 @@
   ./core
   ./db/postgres
   ./develop
-  ./develop/kakoune
   ./develop/python
   ./develop/tmux
   ./develop/zsh
