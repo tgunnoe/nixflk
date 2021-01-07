@@ -9,6 +9,7 @@
 
   # fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
 
+
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-amd" "kvm-intel" ];
