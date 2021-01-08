@@ -675,40 +675,40 @@
         };
 
         # Configure AUCTeX.
-        latex = {
-          enable = true;
-          package = epkgs: epkgs.auctex;
-          mode = [ ''("\\.tex\\'" . latex-mode)'' ];
-          hook = [
-            ''
-            (LaTeX-mode
-             . (lambda ()
-                 (turn-on-reftex)       ; Hook up AUCTeX with RefTeX.
-                 (auto-fill-mode)
-                 (define-key LaTeX-mode-map [adiaeresis] "\\\"a")))
-          ''
-          ];
-          config = ''
-          (setq TeX-PDF-mode t
-                TeX-auto-save t
-                TeX-parse-self t
-                TeX-output-view-style '(("^pdf$" "." "evince %o")
-                                        ( "^ps$" "." "evince %o")
-                                        ("^dvi$" "." "evince %o")))
+        # latex = {
+        #   enable = true;
+        #   package = epkgs: epkgs.auctex;
+        #   mode = [ ''("\\.tex\\'" . latex-mode)'' ];
+        #   hook = [
+        #     ''
+        #     (LaTeX-mode
+        #      . (lambda ()
+        #          (turn-on-reftex)       ; Hook up AUCTeX with RefTeX.
+        #          (auto-fill-mode)
+        #          (define-key LaTeX-mode-map [adiaeresis] "\\\"a")))
+        #   ''
+        #   ];
+        #   config = ''
+        #   (setq TeX-PDF-mode t
+        #         TeX-auto-save t
+        #         TeX-parse-self t
+        #         TeX-output-view-style '(("^pdf$" "." "evince %o")
+        #                                 ( "^ps$" "." "evince %o")
+        #                                 ("^dvi$" "." "evince %o")))
 
-          ;; Add Glossaries command. See
-          ;; http://tex.stackexchange.com/a/36914
-          (eval-after-load "tex"
-            '(add-to-list
-              'TeX-command-list
-              '("Glossaries"
-                "makeglossaries %s"
-                TeX-run-command
-                nil
-                t
-                :help "Create glossaries file")))
-        '';
-        };
+        #   ;; Add Glossaries command. See
+        #   ;; http://tex.stackexchange.com/a/36914
+        #   (eval-after-load "tex"
+        #     '(add-to-list
+        #       'TeX-command-list
+        #       '("Glossaries"
+        #         "makeglossaries %s"
+        #         TeX-run-command
+        #         nil
+        #         t
+        #         :help "Create glossaries file")))
+        # '';
+        # };
 
         company-lsp = {
           enable = true;

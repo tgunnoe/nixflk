@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, config, ... }:
 let
   inherit (builtins) tofile readfile;
   inherit (lib) fileContents mkForce;
@@ -11,7 +11,7 @@ in
 
   users.users.root.hashedPassword = fileContents ../../secrets/root;
 
-  users.users.tgunnoe.packages = with pkgs; [ pandoc ];
+  users.users.tgunnoe.packages = with pkgs; [ /*pandoc*/ ];
 
   programs.gnupg.agent = {
     enable = true;
@@ -25,12 +25,12 @@ in
       ../profiles/git
       ../profiles/alacritty
       ../profiles/direnv
-      #../profiles/emacs
-      #nur.repos.rycee.hmModules.emacs-init
+      ../profiles/emacs
+      pkgs.nur.repos.rycee.hmModules.emacs-init
     ];
 
     home = {
-      packages = mkForce [ ];
+      #packages = mkForce [ ];
 
       file = {
 #        ".ec2-keys".source = ../../secrets/ec2;
@@ -43,28 +43,80 @@ in
       };
     };
 
-    programs.mpv = {
-      enable = true;
-      config = {
-        ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
-        hwdec = "auto";
-        vo = "gpu";
+    programs = {
+      firefox = {
+        enable = true;
+        extensions =
+          with pkgs.nur.repos.rycee.firefox-addons; [
+            ublock-origin
+            browserpass
+            umatrix
+            https-everywhere
+          ];
+        #package = pkgs.firefox-wayland;
+        profiles =
+          let defaultSettings = {
+                "app.update.auto" = false;
+                "browser.startup.homepage" = "https://duckduckgo.com";
+                "browser.search.region" = "US";
+                "browser.search.countryCode" = "US";
+                "browser.search.isUS" = true;
+                "browser.ctrlTab.recentlyUsedOrder" = false;
+                "browser.newtabpage.enabled" = false;
+                "browser.bookmarks.showMobileBookmarks" = true;
+                "distribution.searchplugins.defaultLocale" = "en-US";
+                "general.useragent.locale" = "en-US";
+                "identity.fxaccounts.account.device.name" = config.networking.hostName;
+                "privacy.trackingprotection.enabled" = true;
+                "privacy.trackingprotection.socialtracking.enabled" = true;
+                "privacy.trackingprotection.socialtracking.annotate.enabled" = true;
+                "services.sync.declinedEngines" = "addons,passwords,prefs";
+                "services.sync.engine.addons" = false;
+                "services.sync.engineStatusChanged.addons" = true;
+                "services.sync.engine.passwords" = false;
+                "services.sync.engine.prefs" = false;
+                "services.sync.engineStatusChanged.prefs" = true;
+                "signon.rememberSignons" = false;
+              };
+          in {
+            home = {
+              id = 0;
+              settings = defaultSettings // {
+                "browser.urlbar.placeholderName" = "DuckDuckGo";
+              };
+            };
+
+            work = {
+              id = 1;
+              settings = defaultSettings // {
+                "browser.startup.homepage" = "about:blank";
+              };
+            };
+          };
+      }; # /firefox
+
+      mpv = {
+        enable = true;
+        config = {
+          ytdl-format = "bestvideo[height<=?1080]+bestaudio/best";
+          hwdec = "auto";
+          vo = "gpu";
+        };
       };
-    };
 
-    programs.git = {
-      userName = name;
-      userEmail = "t@gvno.net";
-      # signing = {
-      #   key = "8985725DB5B0C122";
-      #   signByDefault = true;
-      # };
-    };
+      git = {
+        userName = name;
+        userEmail = "t@gvno.net";
+        # signing = {
+        #   key = "8985725DB5B0C122";
+        #   signByDefault = true;
+        # };
+      };
 
-    programs.ssh = {
-      enable = true;
-      hashKnownHosts = true;
-
+      ssh = {
+        enable = true;
+        hashKnownHosts = true;
+      };
     };
   };
 
