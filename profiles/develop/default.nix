@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ ./zsh ./tmux ];
+  imports = [ /*./zsh*/ ./tmux ];
 
   environment.shellAliases = { v = "$EDITOR"; pass = "gopass"; };
 
@@ -12,7 +12,7 @@
   };
 
   environment.systemPackages = with pkgs; [
-    clang
+    #clang
     file
     git-crypt
     gnupg
