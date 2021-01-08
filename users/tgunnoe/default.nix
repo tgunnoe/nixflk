@@ -7,7 +7,10 @@ let
 in
 {
 
-  imports = [ ../../profiles/develop /*./vpn.nix ./mail.nix ./graphical*/ ];
+  imports = [
+    ../../profiles/develop /*./vpn.nix ./mail.nix*/
+    ../../profiles/graphical
+  ];
 
   users.users.root.hashedPassword = fileContents ../../secrets/root;
 
@@ -23,7 +26,8 @@ in
   home-manager.users.tgunnoe = {
     imports = with pkgs; [
       ../profiles/git
-      ../profiles/alacritty
+      #../profiles/alacritty
+      ../profiles/kitty
       ../profiles/direnv
       ../profiles/emacs
       pkgs.nur.repos.rycee.hmModules.emacs-init
