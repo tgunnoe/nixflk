@@ -35,48 +35,9 @@ in
     ];
 
     home = {
-      packages = with pkgs; [
-        swayidle # idle handling
-        swaylock # screen locking
-        waybar   # polybar-alike
-        grim     # screen image capture
-        slurp    # screen are selection tool
-        mako     # notification daemon
-        kanshi   # dynamic display configuration helper
-        #imv      # image viewer
-        wf-recorder # screen recorder
-        wl-clipboard  # wayland vers of xclip
+      # packages = with pkgs; [
 
-        xdg_utils     # for xdg_open
-        xwayland      # for X apps
-        libnl         # waybar wifi
-        libpulseaudio # waybar audio
-
-        #spotify
-
-        swaybg   # required by sway for controlling desktop wallpaper
-        clipman
-        i3status-rust # simpler bar written in Rust
-        drm_info
-        gebaar-libinput  # libinput gestures utility
-        #glpaper          # GL shaders as wallpaper
-        #>oguri            # animated background utility
-        #redshift-wayland # patched to work with wayland gamma protocol
-        #rootbar
-        swaylock-fancy
-        waypipe          # network transparency for Wayland
-        wdisplays
-        wlr-randr
-        #wlay
-        wofi
-        #wtype            # xdotool, but for wayland
-        #wlogout
-        #wldash
-
-        # TODO: more steps required to use this?
-        #xdg-desktop-portal-wlr # xdg-desktop-portal backend for wlroots
-
-      ];
+      # ];
 
       file = {
 #        ".ec2-keys".source = ../../secrets/ec2;
@@ -172,7 +133,8 @@ in
     uid = 1000;
     description = name;
     isNormalUser = true;
+    shell = pkgs.zsh;
     hashedPassword = fileContents ../../secrets/tgunnoe;
-    extraGroups = [ "wheel" "input" "networkmanager" "libvirtd" ];
+    extraGroups = [ "wheel" "input" "networkmanager" "libvirtd" "video" ];
   };
 }

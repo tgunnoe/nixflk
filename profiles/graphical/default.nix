@@ -71,6 +71,7 @@ in
       stdmanpages
       xsel
       zathura
+      pcmanfm
     ];
   };
 
@@ -79,12 +80,12 @@ in
   services.gnome3.gnome-keyring.enable = true;
 
   services.xserver = {
-    enable = true;
+    enable = false;
 
     libinput.enable = true;
 
     displayManager.sddm = {
-      enable = true;
+      enable = false;
       theme = "chili";
     };
   };
