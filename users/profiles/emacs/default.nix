@@ -1,6 +1,10 @@
 { pkgs, ... }:
 {
   #imports = with pkgs; [ nur.repos.rycee.hmModules.emacs-init ];
+  services.emacs = {
+    enable = true;
+  };
+
   programs.emacs = {
     enable = true;
     package = pkgs.emacs;

@@ -1,5 +1,5 @@
 { pkgs, ... }: {
-  imports = [ /*./zsh*/ ./tmux ];
+  imports = [ ./zsh ./tmux ];
 
   environment.shellAliases = { v = "$EDITOR"; pass = "gopass"; };
 
