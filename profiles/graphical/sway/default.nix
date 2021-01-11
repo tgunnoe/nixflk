@@ -94,6 +94,23 @@ in
     "xdg/waybar".source = ./waybar;
   };
 
+  environment.systemPackages = with pkgs; [
+    (
+      pkgs.writeTextFile {
+        name = "startsway";
+        destination = "/bin/startsway";
+        executable = true;
+        text = ''
+          #! ${pkgs.bash}/bin/bash
+
+          # first import environment variables from the login manager
+          systemctl --user import-environment
+          # then start the service
+          exec systemctl --user start sway.service
+        '';
+      }
+    )
+  ];
   programs.tmux.extraConfig = lib.mkBefore ''
     set -g @override_copy_command 'wl-copy'
   '';

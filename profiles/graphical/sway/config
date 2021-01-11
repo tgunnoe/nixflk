@@ -24,7 +24,17 @@ set $menu dmenu_path | dmenu -b | xargs swaymsg exec --
 
 ### Inputs ##############################################################
 #@inputs@
+input 1:1:AT_Translated_Set_2_keyboard {
+      xkb_layout us(dvorak)
+      xkb_variant ,nodeadkeys
+      xkb_options ctrl:nocaps
+}
 
+input 1739:30382:DLL0704:01_06CB:76AE_Touchpad {
+    tap enabled
+    natural_scroll disabled
+    dwt enabled
+}
 
 ### Tasks ###############################################################
 
@@ -87,10 +97,6 @@ bindsym $mod+d exec --no-startup-id wofi --show run
 ## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
 ################################################################################################
 
-#exec --no-startup-id volumeicon
-#bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
 bindsym $mod+Ctrl+m exec pavucontrol
 
 ################################################################################################

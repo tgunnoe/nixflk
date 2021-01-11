@@ -66,6 +66,7 @@ in
       manpages
       papirus-icon-theme
       pulsemixer
+      pavucontrol
       qt5.qtgraphicaleffects
       sddm-chili
       stdmanpages

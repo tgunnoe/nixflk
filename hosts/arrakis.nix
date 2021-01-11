@@ -4,6 +4,7 @@
     ./arrakis-hardware.nix
     ../users/tgunnoe
     ../users/root
+    ../profiles/laptop
   ];
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
