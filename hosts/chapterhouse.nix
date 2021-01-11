@@ -9,7 +9,6 @@
 
   # fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
 
-
   boot = {
     kernelPackages = pkgs.linuxPackages_latest;
     kernelModules = [ "kvm-amd" "kvm-intel" ];
@@ -46,16 +45,25 @@
   networking = {
     hostId = "e53dd769";
     hostName = "chapterhouse";
-    networkmanager.enable = true;
     firewall.allowedTCPPorts = [ 8000 ];
+    enableIPv6 = false;
+    useDHCP = false;
+
+    interfaces = {
+      enp37s0 = {
+        ipv4 = {
+          addresses = [
+            {
+              address = "192.168.0.5";
+              prefixLength = 25;
+            }
+          ];
+        };
+      };
+    };
   };
 
-
   time.timeZone = "America/New_York";
-
-  networking.useDHCP = false;
-  networking.interfaces.enp37s0.useDHCP = true;
-  networking.interfaces.wlp36s0.useDHCP = true;
 
   system.stateVersion = "20.03";
 

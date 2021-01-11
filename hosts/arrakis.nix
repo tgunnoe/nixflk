@@ -51,7 +51,6 @@
   networking = {
     hostId = "1e0adfe3";
     hostName = "arrakis";
-    networkmanager.enable = true;
     firewall.allowedTCPPorts = [ 8000 ];
     useDHCP = false;
     interfaces.wlp58s0.useDHCP = true;
