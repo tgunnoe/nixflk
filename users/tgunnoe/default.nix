@@ -60,7 +60,7 @@ in
             umatrix
             https-everywhere
           ];
-        #package = pkgs.firefox-wayland;
+        package = pkgs.firefox-wayland;
         profiles =
           let defaultSettings = {
                 "app.update.auto" = false;
