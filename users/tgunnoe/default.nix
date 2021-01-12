@@ -8,8 +8,9 @@ in
 {
 
   imports = [
-    ../../profiles/develop /*./vpn.nix ./mail.nix*/
+    ../../profiles/develop /*./mail.nix*/
     ../../profiles/graphical
+    ./vpn.nix
   ];
 
   users.users.root.hashedPassword = fileContents ../../secrets/root;
