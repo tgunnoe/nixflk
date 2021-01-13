@@ -10,6 +10,7 @@ in
   imports = [
     ../../profiles/develop /*./mail.nix*/
     ../../profiles/graphical
+    ../../profiles/ssh
     ./vpn.nix
   ];
 
