@@ -1,17 +1,37 @@
-{ lib, pkgs, ... }:
+{ lib, pkgs, modulesPath, ... }:
 {
   ### root password is empty by default ###
   imports = [
-    ./chapterhouse-hardware.nix
+    (modulesPath + "/installer/scan/not-detected.nix")
     ../users/tgunnoe
     ../users/root
   ];
 
-  # fileSystems."/" = { device = "/dev/disk/by-label/nixos"; };
+  fileSystems."/" =
+    { device = "/dev/disk/by-uuid/91d1dfd6-bf33-46ad-8fc7-3ff39ba826ff";
+      fsType = "ext4";
+    };
+
+  fileSystems."/boot/efi" =
+    { device = "/dev/disk/by-uuid/2EB0-BB29";
+      fsType = "vfat";
+    };
+  fileSystems."/data" =
+    { device = "/dev/disk/by-uuid/0a782a06-91e8-40ae-88fa-6ebe18b7ea74";
+      fsType = "ext4";
+    };
+
+  swapDevices =
+    [ { device = "/dev/disk/by-uuid/04983f36-41ad-4dea-9227-6a3f06fbbb11"; }
+    ];
+
+  # high-resolution display
+  hardware.video.hidpi.enable = lib.mkDefault true;
 
   boot = {
+    extraModulePackages = [ ];
     kernelPackages = pkgs.linuxPackages_latest;
-    kernelModules = [ "kvm-amd" "kvm-intel" ];
+    kernelModules = [ "kvm-amd" ];
     loader = {
       efi = {
         canTouchEfiVariables = true;
@@ -26,6 +46,8 @@
       };
     };
     initrd = {
+      availableKernelModules = [ "nvme" "xhci_pci" "ahci" "usbhid" "usb_storage" "sd_mod" ];
+      kernelModules = [ "dm-snapshot" ];
       secrets = {
         "keyfile0.bin" = "/etc/secrets/initrd/keyfile0.bin";
       };
