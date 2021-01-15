@@ -18,7 +18,11 @@ set $menu dmenu_path | dmenu -b | xargs swaymsg exec --
 
 #output * bg @wall@ fill
 #output DP-3 scale 0.75
-#output DP-2 resolution 3840x2160 position 0,0
+output eDP-1 {
+    resolution 3200x1800
+    position 0,0
+    scale 1.8
+}
 
 #########################################################################
 
