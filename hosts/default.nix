@@ -15,6 +15,7 @@ let
   inherit (pkgset) osPkgs unstablePkgs;
 
   unstableModules = [ ];
+  addToDisabledModules = [ ];
 
   config = hostName:
     lib.nixosSystem {
@@ -30,7 +31,7 @@ let
           core = self.nixosModules.profiles.core;
 
           modOverrides = { config, unstableModulesPath, ... }: {
-            disabledModules = unstableModules;
+            disabledModules = unstableModules ++ addToDisabledModules;
             imports = map
               (path: "${unstableModulesPath}/${path}")
               unstableModules;
@@ -66,12 +67,8 @@ let
             nixpkgs.overlays =
               let
                 override = import ../pkgs/override.nix unstablePkgs;
-
-                overlay = pkg: final: prev: {
-                  "${pkg.pname}" = pkg;
-                };
               in
-              map overlay override;
+              [ override ];
           };
 
           local = import "${toString ./.}/${hostName}.nix";
