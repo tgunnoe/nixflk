@@ -64,6 +64,7 @@ in
       librsvg
       libsForQt5.qtstyleplugins
       manpages
+      nomacs
       papirus-icon-theme
       pulsemixer
       pavucontrol
