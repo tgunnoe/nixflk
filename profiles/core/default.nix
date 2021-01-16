@@ -13,6 +13,7 @@ in
 
     systemPackages = with pkgs; [
       binutils
+      bpytop
       coreutils
       curl
       direnv
@@ -29,6 +30,7 @@ in
       moreutils
       nmap
       ripgrep
+      sshfs
       utillinux
       whois
     ];
